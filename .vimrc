@@ -32,7 +32,6 @@ xnoremap P Pgvy
 
 " start the project management but only in gui mode
 function! StartUpProject()
-    NERDTree projects
     let g:NERDTreeIgnore=['\.swp$', '\~$', '\.pyc$']
     map <F12> :NERDTreeToggle<CR>
     map <A-n> :bn<CR>
@@ -55,8 +54,10 @@ if has("gui_running")
     " maximize
     autocmd GUIEnter * call MaximizeWindow()
     
-    " make the un-named buffer and the OS copy/paste buffer one and the same
-    set clipboard=unnamedplus
+    if has("unix")
+        " make the un-named buffer and the OS copy/paste buffer one and the same
+        set clipboard=unnamedplus
+    endif
     
     " initialize NERDTree and buffer navigation
     autocmd VimEnter * call StartUpProject()
@@ -92,8 +93,14 @@ set hidden
 " Coco settings
 vnoremap <C-B> :CocoCompile<CR>
 
-" load documentations
-helptags ~/.vim/doc/
+if has("unix")
+    " load documentations
+    helptags ~/.vim/doc/
+endif
+if !has("unix")
+    " load documentations
+    exe 'helptags ' . $HOME . "\\vimfiles\\doc"
+endif
 
 
 " Any old plugins that don't use pathogen
