@@ -1,6 +1,3 @@
-[submodule "bundle/command-t"]
-	path = bundle/command-t
-	url = git://git.wincent.com/command-t.git
 [submodule "bundle/mv-vim-puppet"]
 	path = bundle/mv-vim-puppet
 	url = https://mv@github.com/mv/mv-vim-puppet.git
