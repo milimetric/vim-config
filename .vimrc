@@ -41,6 +41,11 @@ function! StartUpProject()
     nmap <silent> <A-Down> :wincmd j<CR>
     nmap <silent> <A-Left> :wincmd h<CR>
     nmap <silent> <A-Right> :wincmd l<CR>
+    
+    " syntax checker settings
+    let g:syntastic_python_checkers=['flake8']
+    " TODO: set ignores if they're not read from setup.cfg
+    " let g:syntastic_python_mri_args=""
 endfunction
 
 function! MaximizeWindow()
@@ -110,3 +115,6 @@ augroup END
 
 " Python checking ignores
 let g:flake8_ignore='E501'",E128,E225'
+
+" Awesome shortcuts I don't want to forget
+map <Leader>fix :%s/_\(.\)/\U\1/gc
