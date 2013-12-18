@@ -54,7 +54,6 @@ function! MaximizeWindow()
 endfunction
 
 if has("gui_running")
-    set expandtab
     
     " maximize
     autocmd GUIEnter * call MaximizeWindow()
@@ -87,6 +86,7 @@ if has("gui_running")
 end
 
 " developer settings
+set expandtab
 set tabstop=4
 set shiftwidth=4
 syntax on
