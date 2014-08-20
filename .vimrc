@@ -13,8 +13,8 @@ set listchars=tab:>-,trail:~,extends:>,precedes:<
 
 " fix grep TODO : this is still far from ideal, turn into a plugin
 set grepprg=grep\ -r\ -i\ -s\ -I\ -o\ -T
-" map <Leader>r :grep! 
-map <Leader>f :SearchAll 
+" map <Leader>r :grep!
+map <Leader>f :SearchAll
 map <Leader>F :SearchAll
 
 " map <Leader>buffers to write all open buffers into a file: TODO: there has
@@ -23,9 +23,9 @@ noremap <silent> <leader>buffers :call writefile( map(filter(range(0,bufnr('$'))
 
 " ******** HACKS
 " hacks to make blank lines stay indented
-inoremap <CR> <CR>x<BS>
-nnoremap o ox<BS>
-nnoremap O Ox<BS>
+"inoremap <CR> <CR>x<BS>
+"nnoremap o ox<BS>
+"nnoremap O Ox<BS>
 " hacks to make paste keep what you're pasting
 xnoremap p pgvy
 xnoremap P Pgvy
