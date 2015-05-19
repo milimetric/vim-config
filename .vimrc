@@ -3,21 +3,35 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Vundle Bundles
+" Vundle
 Bundle 'gmarik/vundle'
-Bundle 'mv/mv-vim-puppet'
+
+Bundle 'rking/ag.vim'
+
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'satyr/vim-coco'
+Bundle 'scrooloose/syntastic'
+
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+
 Bundle 'altercation/vim-colors-solarized'
+Plugin 'luochen1990/rainbow'
+
+" Language specific bundles
+" Bundle 'marijnh/tern_for_vim
 Bundle 'nvie/vim-flake8'
+Bundle 'satyr/vim-coco'
 Bundle 'digitaltoad/vim-jade'
-Bundle 'vim-scripts/vim-json-bundle'
 Bundle 'wavded/vim-stylus'
+Bundle 'mv/mv-vim-puppet'
 
+" turn filetype back on, Vundle stuff is done
+filetype on
 
-" give pathogen access
-call pathogen#infect()
+" configuration for Vundles
+let g:rainbow_active = 1
+
 
 " turn off toolbar
 set guioptions-=T
@@ -44,6 +58,7 @@ xnoremap P Pgvy
 
 " start the project management but only in gui mode
 function! StartUpProject()
+    let g:NERDMenuMode=0
     let g:NERDTreeIgnore=['\.swp$', '\~$', '\.pyc$']
     map <F12> :NERDTreeToggle<CR>
     map <A-n> :bn<CR>
