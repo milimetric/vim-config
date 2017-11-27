@@ -1,3 +1,5 @@
+let g:NERDMenuMode=0
+
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -6,31 +8,56 @@ call vundle#rc()
 " Vundle
 Bundle 'gmarik/vundle'
 
-Bundle 'rking/ag.vim'
+Bundle 'mileszs/ack.vim'
 
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
+Plugin 'neomake/neomake'
 
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
+
+Bundle 'godlygeek/tabular'
 
 Bundle 'altercation/vim-colors-solarized'
 Plugin 'luochen1990/rainbow'
 
 " Language specific bundles
 " Bundle 'marijnh/tern_for_vim
-Bundle 'nvie/vim-flake8'
+" Bundle 'nvie/vim-flake8'
 Bundle 'satyr/vim-coco'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 Bundle 'mv/mv-vim-puppet'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'posva/vim-vue'
 
 " turn filetype back on, Vundle stuff is done
 filetype on
 
 " configuration for Vundles
 let g:rainbow_active = 1
+let g:ackprg = 'ag'
+map <Leader>f :Ack!<Space>
+map <Leader>F :AckAdd<Space>
+" syntax checker settings
+"let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_javascript_checkers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_python_enabled_makers = ['flake8']
+
+
+" prevent scala files from taking forever to save
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java', 'scala']}
+
+" Autoformatter
+noremap <F5> :Autoformat<CR>
+let g:formatdef_scalafmt = "'scalafmt'"
+let g:formatters_scala = ['scalafmt']
+
 
 
 " turn off toolbar
@@ -42,6 +69,10 @@ set guifont=Ubuntu\ Mono\ 16
 " show invisible whitespace
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
+
+" numbers and guides
+set number
+set ruler
 
 " map <Leader>buffers to write all open buffers into a file: TODO: there has
 " Got to be a simpler way
@@ -58,19 +89,16 @@ xnoremap P Pgvy
 
 " start the project management but only in gui mode
 function! StartUpProject()
-    let g:NERDMenuMode=0
     let g:NERDTreeIgnore=['\.swp$', '\~$', '\.pyc$']
     map <F12> :NERDTreeToggle<CR>
-    map <A-n> :bn<CR>
-    map <A-p> :bp<CR>
+    map <C-n> :bn<CR>
+    map <C-p> :bp<CR>
     let g:NERDTreeChDirMode=2
-    nmap <silent> <A-Up> :wincmd k<CR>
-    nmap <silent> <A-Down> :wincmd j<CR>
-    nmap <silent> <A-Left> :wincmd h<CR>
-    nmap <silent> <A-Right> :wincmd l<CR>
+    nmap <silent> <C-Up> :wincmd k<CR>
+    nmap <silent> <C-Down> :wincmd j<CR>
+    nmap <silent> <C-Left> :wincmd h<CR>
+    nmap <silent> <C-Right> :wincmd l<CR>
 
-    " syntax checker settings
-    let g:syntastic_python_checkers=['flake8']
     " TODO: set ignores if they're not read from setup.cfg
     " let g:syntastic_python_mri_args=""
 endfunction
@@ -79,6 +107,12 @@ function! MaximizeWindow()
   set lines=999
   set columns=999
 endfunction
+
+" initialize NERDTree and buffer navigation
+autocmd VimEnter * call StartUpProject()
+
+" initialize auto-make
+autocmd! BufWritePost * Neomake
 
 if has("gui_running")
 
@@ -89,9 +123,6 @@ if has("gui_running")
         " make the un-named buffer and the OS copy/paste buffer one and the same
         set clipboard=unnamedplus
     endif
-
-    " initialize NERDTree and buffer navigation
-    autocmd VimEnter * call StartUpProject()
 
     " Colorscheme - Solarized by Ethan Schoonover
     syntax enable
@@ -138,6 +169,8 @@ endif
 " Any old plugins that don't use pathogen
 augroup filetypedetect
   au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
+  " for .hql files
+  au BufNewFile,BufRead *.hql set filetype=sql syntax=sql
 augroup END
 
 " Python checking ignores
