@@ -1,12 +1,11 @@
-let g:NERDMenuMode=0
-
+" Initialize Vundle
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Vundle
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 
 Bundle 'mileszs/ack.vim'
 
@@ -35,8 +34,12 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'posva/vim-vue'
 
+call vundle#end()
+
 " turn filetype back on, Vundle stuff is done
 filetype on
+
+let g:NERDMenuMode=0
 
 " configuration for Vundles
 let g:rainbow_active = 1
