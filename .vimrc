@@ -106,11 +106,6 @@ function! StartUpProject()
     " let g:syntastic_python_mri_args=""
 endfunction
 
-function! MaximizeWindow()
-  set lines=999
-  set columns=999
-endfunction
-
 " initialize NERDTree and buffer navigation
 autocmd VimEnter * call StartUpProject()
 
@@ -119,8 +114,8 @@ autocmd! BufWritePost * Neomake
 
 if has("gui_running")
 
-    " maximize
-    autocmd GUIEnter * call MaximizeWindow()
+    " maximize (depends on wmctrl)
+    autocmd VimEnter * call system('wmctrl -i -b add,maximized_vert,maximized_horz -r '.v:windowid)
 
     if has("unix")
         " make the un-named buffer and the OS copy/paste buffer one and the same
