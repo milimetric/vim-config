@@ -51,6 +51,14 @@ map <Leader>F :AckAdd<Space>
 "let g:syntastic_javascript_checkers = ['eslint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_python_enabled_makers = ['flake8']
+"let g:neomake_error_sign = { 'text': 'E>', 'texthl': 'ErrorMsg', }
+"let g:neomake_warning_sign = { 'text': 'W>', 'texthl': 'WarningMsg', }
+augroup my_neomake_signs
+    au!
+    autocmd ColorScheme *
+        \ hi NeomakeErrorSign ctermfg=red |
+        \ hi NeomakeWarningSign ctermfg=yellow
+augroup END
 
 
 " prevent scala files from taking forever to save
