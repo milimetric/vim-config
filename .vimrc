@@ -33,6 +33,7 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'posva/vim-vue'
+Plugin 'stephenway/postcss.vim'
 
 call vundle#end()
 
