@@ -35,6 +35,9 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'posva/vim-vue'
 Plugin 'stephenway/postcss.vim'
 
+" Games
+Plugin 'vim/killersheep'
+
 call vundle#end()
 
 " turn filetype back on, Vundle stuff is done
@@ -77,7 +80,7 @@ set guioptions-=T
 " turn on incremental search
 set incsearch
 " set font
-set guifont=Ubuntu\ Mono\ 16
+set guifont=Fira\ Code\ weight\=450\ 16
 " show invisible whitespace
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
