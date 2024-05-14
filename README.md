@@ -8,4 +8,4 @@ I change this from time to time and it's not meant to be universal, just my pref
     sudo apt install wmctrl
     ln -s ~/.vim/.vimrc ~/.vimrc
     vim
-    :PluginInstall
+    :VundleInstall
