@@ -10,4 +10,4 @@ I change this from time to time and it's not meant to be universal, just my pref
     sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
     sudo apt install fonts-firacode
     vim
-    :PluginInstall
+    :VundleInstall
